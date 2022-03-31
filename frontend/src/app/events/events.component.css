@@ -1,0 +1,21 @@
+.event-container
+  { background-color: white; 
+}
+
+div.events {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+  }
+  
+  button.new-event {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  @media (max-width: 720px) {
+    div.events {
+      grid-template-columns: 1fr;
+    }
+  }
