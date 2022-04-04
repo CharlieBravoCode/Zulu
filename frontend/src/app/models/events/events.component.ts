@@ -17,16 +17,13 @@ export class EventsComponent implements OnInit, OnDestroy {
   eventsListSubs: Subscription;
   eventsList: Event[];
 
-  // make eventList into the datasource for an angular material table
-  
-
-  displayedColumns: string[] = ['title', 'identifier'];
+  displayedColumns: string[] = ['identifier', 'title', 'location'];
 
   constructor(private eventsApi: EventsApiService) {
   }
   ngOnInit() {
     this.eventsListSubs = this.eventsApi
-      .getExams()
+      .getEvent()
       .subscribe(res => {
           this.eventsList = res;
         },

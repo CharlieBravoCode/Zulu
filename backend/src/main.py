@@ -1,6 +1,7 @@
 
 from asyncio import events
 from multiprocessing import Event
+from subprocess import call
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -31,17 +32,17 @@ def get_events():
 @app.route('/events', methods=['POST'])
 def add_event():
     # mount event object
-    posted_event = EventsSchema(only=('identifier', 'title'))\
+    posted_event = EventsSchema(only=('identifier', 'title', 'location'))\
         .load(request.get_json())
 
-    event = Event(**posted_event, created_by="HTTP post request")
+    event = Events(**posted_event)
 
     # persist event
     session = Session()
     session.add(event)
     session.commit()
 
-    # return created exam
+    # return created event
     new_event = EventsSchema().dump(event)
     session.close()
     return jsonify(new_event), 201
@@ -55,6 +56,6 @@ testEvents = session.query(Events).all()
 
 print('### Events:')
 for event in testEvents:
-    print(f'({event.id}) {event.identifier} - {event.title}')
+    print(f'({event.id}) {event.identifier} - {event.title} - {event.location}')
 
     

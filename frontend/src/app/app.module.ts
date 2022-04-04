@@ -20,6 +20,7 @@ import { MapComponent } from './views/map/map.component';
 import { HelpComponent } from './views/help/help.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { NewEventFormComponent } from './models/events/buttons/new-event/button-new-event.component';
 
 import { EventsComponent } from './models/events/events.component';
 import { EventsApiService } from './models/events/events-api.service';
@@ -36,6 +37,7 @@ import { EventsApiService } from './models/events/events-api.service';
     SettingsComponent, 
     NotFoundComponent,
     EventsComponent,
+    NewEventFormComponent,
   ],
   imports: [
     BrowserModule,

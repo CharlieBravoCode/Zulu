@@ -6,6 +6,7 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ListComponent } from './views/list/list.component';
 import { SettingsComponent } from './views/settings/settings.component';
+import { NewEventFormComponent } from './models/events/buttons/new-event/button-new-event.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'new-event',
+    component: NewEventFormComponent,
   },
   {
     path: '**',

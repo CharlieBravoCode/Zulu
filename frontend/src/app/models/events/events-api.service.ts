@@ -18,14 +18,14 @@ export class EventsApiService {
   }
 
  
-  getExams(): Observable<Event[]> {
+  getEvent(): Observable<Event[]> {
     return this.http
       .get<Event[]>(`${API_URL}/events`)
       .pipe
         (catchError(EventsApiService._handleError));
   }
 
-  saveExam(event: Event): Observable<any> {
+  saveEvent(event: Event): Observable<any> {
     return this.http
       .post(`${API_URL}/events`, event);
   }

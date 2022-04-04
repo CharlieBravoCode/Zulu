@@ -1,8 +1,8 @@
 
-  <!-- create a angular Table 
-    use for the datasource the eventList array
-    use as colums from the eventList array the identifier and the title -->
-
+    <button mat-fab color="primary" class="new-event" routerLink="/new-event">
+      <i class="material-icons">note_add</i>
+    </button>
+    
     <table mat-table [dataSource]="eventsList" class="mat-elevation-z8">
       <ng-container matColumnDef="identifier">
         <th mat-header-cell *matHeaderCellDef> Identifier </th>
@@ -12,7 +12,10 @@
         <th mat-header-cell *matHeaderCellDef> Title </th>
         <td mat-cell *matCellDef="let element"> {{element.title}} </td>
       </ng-container>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
-
     </table>
