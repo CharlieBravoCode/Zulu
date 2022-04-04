@@ -7,7 +7,7 @@ import { EventsApiService } from './events-api.service';
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.scss']
 })
 
 
@@ -17,11 +17,13 @@ export class EventsComponent implements OnInit, OnDestroy {
   eventsListSubs: Subscription;
   eventsList: Event[];
 
+  // make eventList into the datasource for an angular material table
+  
+
   displayedColumns: string[] = ['title', 'identifier'];
 
   constructor(private eventsApi: EventsApiService) {
   }
-
   ngOnInit() {
     this.eventsListSubs = this.eventsApi
       .getExams()
@@ -30,9 +32,10 @@ export class EventsComponent implements OnInit, OnDestroy {
         },
         console.error
       );
-  }
+      var datasource = this.eventsList;
+    }
 
- 
+
     ngOnDestroy() {
     this.eventsListSubs.unsubscribe();
   }

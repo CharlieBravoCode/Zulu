@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { API_URL } from '../env';
+import { API_URL } from '../../env';
 import { Event } from './events.model';
 
 @Injectable()

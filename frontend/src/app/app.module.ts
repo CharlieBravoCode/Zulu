@@ -1,52 +1,56 @@
-
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule}  from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
-import { EventsApiService } from './events/events-api.service';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table'  
 
 
-const appRoutes: Routes = [
-    { path: '', component: EventsComponent },
-];
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { ListComponent } from './views/list/list.component';
+import { MapComponent } from './views/map/map.component';
+import { HelpComponent } from './views/help/help.component';
+import { SettingsComponent } from './views/settings/settings.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+
+import { EventsComponent } from './models/events/events.component';
+import { EventsApiService } from './models/events/events-api.service';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, 
+    DashboardComponent, 
+    ListComponent, 
+    MapComponent, 
+    HelpComponent,
+    SettingsComponent, 
+    NotFoundComponent,
     EventsComponent,
-    SidenavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,),
-    NoopAnimationsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTableModule,
     MatSidenavModule,
+    MatButtonModule,
     MatIconModule,
-    MatListModule,
+    MatDividerModule,
+    HttpClientModule,
+    MatTableModule,
+    
   ],
   providers: [EventsApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
