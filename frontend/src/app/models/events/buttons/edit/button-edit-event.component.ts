@@ -4,13 +4,13 @@ import {EventsApiService} from "../../events-api.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'event-button-new-event',
-  templateUrl: './button-new-event.component.html',
-  styleUrls: ['./button-new-event.component.scss']
+  selector: 'event-button-edit-event',
+  templateUrl: './button-edit-event.component.html',
+  styleUrls: ['./button-edit-event.component.scss']
 })
 
 
-export class NewEventButtonComponent {
+export class EditEventButtonComponent {
   events = {
     identifier: '',
     title: '',

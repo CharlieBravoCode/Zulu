@@ -2,19 +2,43 @@
   { background-color: white; 
 }
 
+@media (max-width: 720px) {
+  div.events {
+    grid-template-columns: 1fr;
+  }
+}
+
 div.events {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
   }
   
-
-  
-  @media (max-width: 720px) {
-    div.events {
-      grid-template-columns: 1fr;
-    }
+  button.new-event {
+    position: top;
+    bottom: 15px;
+    right: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
   }
+
+  button.edit {
+    position: top;
+    bottom: 15px;
+    right: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  button.delete {
+    position: top;
+    bottom: 15px;
+    right: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  
+
 
   table.mat-table {
     display: table;
@@ -34,3 +58,12 @@ div.events {
   .demo-row-is-clicked {
     font-weight: bold;
   }
+
+  .mat-row.hovered {
+    background: #eee;
+  }
+
+  .mat-row.highlighted {
+    background: #999;
+}
+

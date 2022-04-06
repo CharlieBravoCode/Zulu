@@ -1,8 +1,10 @@
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Event } from './events.model';
 import { EventsApiService } from './events-api.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-events',
@@ -19,8 +21,13 @@ export class EventsComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['identifier', 'title', 'location'];
 
+  
+  clickedRow = new Set<Event>();
+  selection = new SelectionModel<Event>(false, []);
+
   constructor(private eventsApi: EventsApiService) {
   }
+
   ngOnInit() {
     this.eventsListSubs = this.eventsApi
       .getEvent()
@@ -29,11 +36,18 @@ export class EventsComponent implements OnInit, OnDestroy {
         },
         console.error
       );
+      
       var datasource = this.eventsList;
-    }
+  }
 
+  public currentEvent;
 
-    ngOnDestroy() {
+  public selectEvent(event: any, item: any) {
+
+    this.currentEvent = item.name;
+  }
+
+  ngOnDestroy() {
     this.eventsListSubs.unsubscribe();
   }
 

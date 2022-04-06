@@ -1,0 +1,15 @@
+<div>
+    <h2>New Event</h2>
+  <br>
+    <label for="events-identifier">Identifier</label>
+    <input id="events-identifier" (keyup)="updateIdentifier($event)">
+  <br>
+    <label for="events-title">Title</label>
+    <input id="events-title" (keyup)="updateTitle($event)">
+  <br>
+    <label for="events-location">Location</label>
+    <input id="events-location" (keyup)="updateLocation($event)">
+  <br>
+  <br>
+    <button (click)="saveEvent()">Save Event</button>
+  </div>

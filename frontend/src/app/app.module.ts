@@ -20,7 +20,9 @@ import { MapComponent } from './views/map/map.component';
 import { HelpComponent } from './views/help/help.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
-import { NewEventFormComponent } from './models/events/buttons/new-event/button-new-event.component';
+import { NewEventButtonComponent } from './models/events/buttons/new-event/button-new-event.component';
+import { EditEventButtonComponent } from './models/events/buttons/edit/button-edit-event.component';
+import { DeleteEventButtonComponent } from './models/events/buttons/delete/button-delete-event.component';
 
 import { EventsComponent } from './models/events/events.component';
 import { EventsApiService } from './models/events/events-api.service';
@@ -37,7 +39,9 @@ import { EventsApiService } from './models/events/events-api.service';
     SettingsComponent, 
     NotFoundComponent,
     EventsComponent,
-    NewEventFormComponent,
+    NewEventButtonComponent,
+    EditEventButtonComponent,
+    DeleteEventButtonComponent,
   ],
   imports: [
     BrowserModule,

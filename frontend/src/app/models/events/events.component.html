@@ -2,8 +2,18 @@
     <button mat-fab color="primary" class="new-event" routerLink="/new-event">
       <i class="material-icons">note_add</i>
     </button>
-    
-    <table mat-table [dataSource]="eventsList" class="mat-elevation-z8">
+    <button mat-fab color="primary" class="edit" routerLink="/edit">
+      <i class="material-icons">edit</i>
+    </button>
+    <button mat-fab color="primary" class="delete" routerLink="/delete">
+      <i class="material-icons">delete</i>
+    </button>
+    <br>
+    <br>
+
+    <!-- Table -->
+    <table mat-table [dataSource]="eventsList"  
+    class="mat-elevation-z8">
       <ng-container matColumnDef="identifier">
         <th mat-header-cell *matHeaderCellDef> Identifier </th>
         <td mat-cell *matCellDef="let element"> {{element.identifier}} </td>
@@ -16,6 +26,29 @@
         <th mat-header-cell *matHeaderCellDef> Location </th>
         <td mat-cell *matCellDef="let element"> {{element.location}} </td>
       </ng-container>
+
+      <!-- Row Click-able -->
+      <!-- allow clickRows only when no row is selected-->
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+          (click)="selection.toggle(row)"          
+          (click)="clickedRow.add(row)" 
+          [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+          (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+      </tr>
     </table>
+
+      <!-- Test Code for displaying the currently selected row -->
+      <br>
+      <div>
+        <h3>
+          Click Log
+        </h3>
+      </div>     
+
+      <ul>
+        <li *ngFor="let clickedRow of clickedRow">
+          Clicked on {{clickedRow.title}}
+        </li>
+      </ul>
