@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {EventsApiService} from "../../events-api.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EventsApiService } from "../../events-api.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'event-button-new-event',
@@ -41,3 +41,4 @@ export class NewEventButtonComponent {
       );
   }
 }
+

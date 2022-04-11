@@ -1,61 +1,86 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-from asyncio import events
-from multiprocessing import Event
-from subprocess import call
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-
-from .entities.entity import Session, engine, Base
-from .entities.events import Events, EventsSchema
+from flask import Flask, jsonify,request, abort
+from flask_cors import CORS, cross_origin
 
 
-# creating the Flask application
 app = Flask(__name__)
 CORS(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:seglniosi3ng9834ogno3ngkldowuez!$rmfmrRJjmelsmfdjUfnerurnfsegom490zj498t23nto(ugneukgbekgdj@localhost/zulu_db_postgres'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+if __name__ == '__main__':
+  app.run(debug=True)
 
 
-@app.route('/events', methods=['GET'])
-def get_events():
-    # fetching from the database
-    session = Session()
-    events_objects = session.query(Events).all()
+class Events(db.Model):
+    __tablename__ = 'events'
+    id = db.Column(db.Integer, primary_key = True)
+    identifier = db.Column(db.String)
+    title = db.Column(db.String)
+    location = db.Column(db.Integer())
 
-    # transforming into JSON-serializable objects
-    schema = EventsSchema(many=True)
-    events = schema.dump(events_objects)
-
-    # serializing as JSON
-    session.close()
-    return jsonify(events)
+    def __repr__(self):
+        return "<Event %r>" % self.title 
 
 
-@app.route('/events', methods=['POST'])
-def add_event():
-    # mount event object
-    posted_event = EventsSchema(only=('identifier', 'title', 'location'))\
-        .load(request.get_json())
+@cross_origin()
+@app.route('/events', methods = ['POST'])
+def create_event():
+    event_data = request.json
 
-    event = Events(**posted_event)
-
-    # persist event
-    session = Session()
-    session.add(event)
-    session.commit()
-
-    # return created event
-    new_event = EventsSchema().dump(event)
-    session.close()
-    return jsonify(new_event), 201
-
-
-
-#Testing the content of the db table events with 
-# "python -m src.main"
-session = Session()
-testEvents = session.query(Events).all()
-
-print('### Events:')
-for event in testEvents:
-    print(f'({event.id}) {event.identifier} - {event.title} - {event.location}')
-
+    identifier = event_data['identifier']
+    title  = event_data['title']
+    location = event_data['location']
+  
+    event = Events(identifier = identifier, title = title, location = location)
+    db.session.add(event)
+    db.session.commit()
     
+
+    return jsonify({"success": True,"response":"Event added"})
+
+
+
+@cross_origin()    
+@app.route('/events', methods = ['GET'])
+def getevents():
+     all_events = []
+     events = Events.query.all()
+     for event in events:
+          results = {
+                    "id":event.id,
+                    "identifier":event.identifier,
+                    "title":event.title,
+                    "location":event.location
+          }
+          all_events.append(results)
+
+     return jsonify(all_events)
+
+
+
+@cross_origin()  
+@app.route("/events/<int:event_id>", methods = ["PUT"])
+def update_event(event_id):
+    event = Events.query.get(event_id)
+    identifier = request.json['identifier']
+    title = request.json['title']
+    location = request.json['location']
+
+    if event is None:
+        abort(404)
+    else:
+        event.identifier = identifier
+        event.title = title
+        event.location = location
+        db.session.add(event)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Event Details updated"})
+
+
+
+
+

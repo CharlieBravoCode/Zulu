@@ -4,6 +4,6 @@ export class Event {
       public identifier: string,
       public title: string,
       public location: string,
-      public _id?: number,
+      public id?: number,
       ) { }
   }

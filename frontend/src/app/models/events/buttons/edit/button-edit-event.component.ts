@@ -1,7 +1,11 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {EventsApiService} from "../../events-api.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EventsApiService } from "../../events-api.service";
+import { Router } from "@angular/router";
+import { Event } from "../../../../models/events/events.model";
+import { Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'event-button-edit-event',
@@ -10,15 +14,31 @@ import {Router} from "@angular/router";
 })
 
 
+// 
 export class EditEventButtonComponent {
   events = {
     identifier: '',
     title: '',
     location: '',
+    id: 0,
   };
 
   constructor(private eventsApi: EventsApiService, private router: Router) { }
 
+  eventsListSubs: Subscription;
+  eventsList: Event[];
+
+  ngOnInit() {
+    this.eventsListSubs = this.eventsApi
+      .getEvent()
+      .subscribe(res => {
+          this.eventsList = res;
+        },
+        console.error
+      );
+      
+      var datasource = this.eventsList;
+  }
   
   updateIdentifier(event: any) {
     this.events.identifier = event.target.value;
@@ -32,12 +52,13 @@ export class EditEventButtonComponent {
     this.events.location = event.target.value;
   }
 
-  saveEvent() {
+  editEvent() {
     this.eventsApi
-      .saveEvent(this.events)
+      .editEvent(this.events, this.events.id)
       .subscribe(
         () => this.router.navigate(['/list']),
         console.error
       );
   }
+  
 }
