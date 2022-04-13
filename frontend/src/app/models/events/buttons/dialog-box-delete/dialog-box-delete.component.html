@@ -1,7 +1,21 @@
 <!-- dialog-box.component.html -->
-<h1 mat-dialog-title><strong>Edit</strong></h1>
-<div mat-dialog-content>  
-  <mat-form-field>
+<h1 mat-dialog-title><strong>Delete</strong></h1>
+<div mat-dialog-content> 
+  <table>
+    <tr>{{events.identifier}}</tr>
+    <tr>{{events.title}}</tr>
+    <tr>{{events.location}}</tr>
+  </table>
+  </div>
+  <br>
+<div mat-dialog-actions>
+  <button mat-button (click)="deleteEvent()">Delete</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
+
+
+<!--
+    <mat-form-field>
     <input placeholder="Identifier" matInput [(ngModel)]="events.identifier"(keyup)="updateIdentifier($event)">
   </mat-form-field>
   <mat-form-field>
@@ -10,11 +24,7 @@
   <mat-form-field>
     <input placeholder="Location" matInput [(ngModel)]="events.location"(keyup)="updateLocation($event)">
   </mat-form-field>
-  <mat-form-field>
+    <mat-form-field>
     <input placeholder="ID" matInput [(ngModel)]="events.id"(keyup)="updateId($event)">
   </mat-form-field>
-  </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="deleteEvent()">Delete</button>
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
-</div>
+-->

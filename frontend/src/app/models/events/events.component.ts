@@ -28,7 +28,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   eventsListSubs: Subscription;
   eventsList: Event[];
 
-  displayedColumns: string[] = ['identifier', 'title', 'location', 'id', 'action'];
+  displayedColumns: string[] = ['identifier', 'title', 'location', 'action'];
   
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   

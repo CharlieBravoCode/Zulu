@@ -2,12 +2,16 @@
     <button mat-fab color="primary" class="new-event" routerLink="/new-event">
       <i class="material-icons">note_add</i>
     </button>
+   
+   <!--
     <button mat-fab color="primary" class="edit" routerLink="/edit">
       <i class="material-icons">edit</i>
     </button>
     <button mat-fab color="primary" class="delete" routerLink="/delete">
       <i class="material-icons">delete</i>
     </button>
+    -->
+
     <br>
     <br>
 
@@ -29,10 +33,13 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Location"> Location </th>
         <td mat-cell *matCellDef="let element"> {{element.location}} </td>
       </ng-container>
+
+      <!--
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ID"> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
+      -->
 
       <!-- Action Column -->
     <ng-container matColumnDef="action">

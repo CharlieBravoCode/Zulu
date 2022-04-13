@@ -29,6 +29,8 @@ import { EditEventButtonComponent } from './models/events/buttons/edit/button-ed
 import { DeleteEventButtonComponent } from './models/events/buttons/delete/button-delete-event.component';
 import { DialogBoxEditComponent } from './models/events/buttons/dialog-box-edit/dialog-box-edit.component';
 import { DialogBoxDeleteComponent } from './models/events/buttons/dialog-box-delete/dialog-box-delete.component';
+import { MapModuleComponent } from './models/map-module/map-module.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -52,6 +54,7 @@ import { EventsApiService } from './models/events/events-api.service';
     DeleteEventButtonComponent,
     DialogBoxEditComponent,
     DialogBoxDeleteComponent,
+    MapModuleComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { EventsApiService } from './models/events/events-api.service';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,    
+    LeafletModule,
   ],
   providers: [EventsApiService],
   bootstrap: [AppComponent],

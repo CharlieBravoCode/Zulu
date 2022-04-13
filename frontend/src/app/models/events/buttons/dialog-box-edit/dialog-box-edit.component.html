@@ -10,9 +10,11 @@
   <mat-form-field>
     <input placeholder="Location" matInput [(ngModel)]="events.location"(keyup)="updateLocation($event)">
   </mat-form-field>
+  <!-- 
   <mat-form-field>
     <input placeholder="ID" matInput [(ngModel)]="events.id"(keyup)="updateId($event)">
   </mat-form-field>
+  -->
   </div>
 <div mat-dialog-actions>
   <button mat-button (click)="editEvent()">Edit</button>
