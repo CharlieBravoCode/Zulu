@@ -3,7 +3,6 @@ import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventsApiService } from "../../events-api.service";
 import { Router } from "@angular/router";
-import { OnInit } from  '@angular/core';
 
 
 export interface EventsData {
@@ -15,11 +14,11 @@ export interface EventsData {
 
 
 @Component({
-  selector: 'app-dialog-box',
-  templateUrl: './dialog-box.component.html',
-  styleUrls: ['./dialog-box.component.scss']
+  selector: 'app-dialog-box-delete',
+  templateUrl: './dialog-box-delete.component.html',
+  styleUrls: ['./dialog-box-delete.component.scss']
 })
-export class DialogBoxComponent {
+export class DialogBoxDeleteComponent {
 
  
   events = {
@@ -30,7 +29,7 @@ export class DialogBoxComponent {
   };
 
   constructor(
-    public dialogRef: MatDialogRef<DialogBoxComponent>,
+    public dialogRef: MatDialogRef<DialogBoxDeleteComponent>,
     private eventsApi: EventsApiService, private router: Router,
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: EventsData    ) {
@@ -59,10 +58,10 @@ export class DialogBoxComponent {
     this.events.id = event.target.value;
   }
 
-  editEvent() {
+  deleteEvent() {
     this.dialogRef.close({data:this.events});
     this.eventsApi
-      .editEvent(this.events, this.events.id)
+      .deleteEvent(this.events, this.events.id)
       .subscribe(
         () => 
         this.redirectTo('//list'),

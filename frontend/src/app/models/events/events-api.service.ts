@@ -45,4 +45,10 @@ export class EventsApiService {
       
   }
 
+  deleteEvent(event: Event, events_id: number): Observable<any> {
+    return this.http
+      .delete(`${API_URL}/events/${events_id}`);
+      
+  }
+
 }

@@ -1,15 +1,18 @@
 
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Event } from './events.model';
 import { EventsApiService } from './events-api.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from "@angular/router";
+
+import { DialogBoxEditComponent } from './buttons/dialog-box-edit/dialog-box-edit.component';
+import { DialogBoxDeleteComponent } from './buttons/dialog-box-delete/dialog-box-delete.component';
 
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogBoxComponent } from './buttons/dialog-box/dialog-box.component';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
@@ -26,7 +29,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   eventsList: Event[];
 
   displayedColumns: string[] = ['identifier', 'title', 'location', 'id', 'action'];
-
+  
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   
   public clickedRow = new Set<Event>();
@@ -34,7 +37,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 
   constructor(private eventsApi: EventsApiService, public dialog: MatDialog) {
   }
-
+  
   
   ngOnInit() {
     this.eventsListSubs = this.eventsApi
@@ -48,9 +51,10 @@ export class EventsComponent implements OnInit, OnDestroy {
       var eventsList = this.eventsList;
   }
 
-  openDialog(action,obj) {
+  
+  openDialog_edit(action,obj) {
     obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
+    const dialogRef = this.dialog.open(DialogBoxEditComponent, {
       width: '250px',
       data:obj
     })
@@ -68,7 +72,25 @@ export class EventsComponent implements OnInit, OnDestroy {
         );
   }
 
- 
+  openDialog_delete(action,obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxDeleteComponent, {
+      width: '250px',
+      data:obj
+    })
+    // After closing the list componant should be refreshed
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.table.renderRows();
+    })
+      this.eventsListSubs = this.eventsApi
+        .getEvents()
+        .subscribe(res => {
+            this.eventsList = res;
+          },
+          console.error
+        );
+  }
 
 
   ngOnDestroy() {

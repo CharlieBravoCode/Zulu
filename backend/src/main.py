@@ -1,7 +1,5 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
 from flask import Flask, jsonify,request, abort
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 
 
@@ -80,6 +78,18 @@ def update_event(event_id):
         db.session.commit()
         return jsonify({"success": True, "response": "Event Details updated"})
 
+
+@cross_origin()  
+@app.route("/events/<int:event_id>", methods = ["DELETE"])
+def delete_event(event_id):
+    event = Events.query.get(event_id)
+
+    if event is None:
+        abort(404)
+    else:
+        db.session.delete(event)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Event Deleted"})
 
 
 
