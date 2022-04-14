@@ -7,7 +7,7 @@ import { PopupService } from './popup.service';
   providedIn: 'root'
 })
 export class MarkerService {
-  capitals: string = '/assets/data/usa-capitals.geojson';
+  capitals: string = '/assets/data/Crisis_Kreis.Steinfurt.geojson';
 
   constructor(
     private http: HttpClient,

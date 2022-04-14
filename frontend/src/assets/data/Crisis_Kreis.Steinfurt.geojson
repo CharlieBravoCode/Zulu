@@ -1,0 +1,37 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            7.44158,
+            52.2798 
+          ]
+        },
+        "properties": {
+          "title": "Power Failure in the entire city",
+          "identifier": "Crisis-2",
+          "location": "Rheine",
+          "population": 199518
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            7.33140, 
+            52.1485 
+          ]
+        },
+        "properties": {
+          "title": "Flood in city center",
+          "identifier": "Crisis-2",
+          "location": "Burgsteinfurt",
+          "population": 199518
+        }
+      }
+    ]
+  }
