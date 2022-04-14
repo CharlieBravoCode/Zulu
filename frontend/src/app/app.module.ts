@@ -32,6 +32,10 @@ import { DialogBoxDeleteComponent } from './models/events/buttons/dialog-box-del
 import { MapModuleComponent } from './models/map-module/map-module.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
+// Map-Module Services
+import { PopupService } from './models/map-module/map-services/popup.service';
+import { MarkerService } from './models/map-module/map-services/marker.service';
+import { ShapeService } from './models/map-module/map-services/shape.service';
 
 
 import { EventsComponent } from './models/events/events.component';
@@ -73,7 +77,12 @@ import { EventsApiService } from './models/events/events-api.service';
     MatInputModule,    
     LeafletModule,
   ],
-  providers: [EventsApiService],
+  providers: [
+    EventsApiService,
+    MarkerService, 
+    PopupService,
+    ShapeService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
