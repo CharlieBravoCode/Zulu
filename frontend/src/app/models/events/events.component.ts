@@ -25,6 +25,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EventsComponent implements OnInit, OnDestroy {
   title = 'frontend';
 
+  selectedValue: string;
   eventsListSubs: Subscription;
   eventsList: Event[];
 

@@ -19,6 +19,8 @@ class Events(db.Model):
     identifier = db.Column(db.String)
     title = db.Column(db.String)
     location = db.Column(db.Integer())
+    latitud = db.Column(db.Float)
+    longitud = db.Column(db.Float)
 
     def __repr__(self):
         return "<Event %r>" % self.title 
@@ -32,8 +34,10 @@ def create_event():
     identifier = event_data['identifier']
     title  = event_data['title']
     location = event_data['location']
+    latitud = event_data['latitud']
+    longitud = event_data['longitud']
   
-    event = Events(identifier = identifier, title = title, location = location)
+    event = Events(identifier = identifier, title = title, location = location, latitud = latitud, longitud = longitud)
     db.session.add(event)
     db.session.commit()
     
@@ -52,11 +56,35 @@ def getevents():
                     "id":event.id,
                     "identifier":event.identifier,
                     "title":event.title,
-                    "location":event.location
+                    "location":event.location,
+                    "latitud":event.latitud,
+                    "longitud":event.longitud
           }
           all_events.append(results)
 
      return jsonify(all_events)
+
+
+@cross_origin() 
+@app.route('/events/geojson', methods = ['GET'])
+def geteventsgeojson():
+        points = []
+        events = Events.query.all()
+        for event in events:
+            points.append({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [event.longitud, event.latitud]
+                },
+                "properties": {
+                    "title": event.title,
+                    "identifier": event.identifier,
+                    "location": event.location,
+                    "id": event.id
+                }
+            })
+        return jsonify({"type": "FeatureCollection", "features": points})
 
 
 
@@ -67,6 +95,8 @@ def update_event(event_id):
     identifier = request.json['identifier']
     title = request.json['title']
     location = request.json['location']
+    latitud = request.json['latitud']
+    longitud = request.json['longitud']
 
     if event is None:
         abort(404)
@@ -74,6 +104,8 @@ def update_event(event_id):
         event.identifier = identifier
         event.title = title
         event.location = location
+        event.latitud = latitud
+        event.longitud = longitud
         db.session.add(event)
         db.session.commit()
         return jsonify({"success": True, "response": "Event Details updated"})

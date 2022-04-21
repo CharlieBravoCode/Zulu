@@ -7,9 +7,18 @@
   <mat-form-field>
     <input placeholder="Name" matInput [(ngModel)]="events.title"(keyup)="updateTitle($event)">
   </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Location" matInput [(ngModel)]="events.location"(keyup)="updateLocation($event)">
-  </mat-form-field>
+  <form>
+    <p>Location</p>
+    <mat-form-field appearance="fill">
+      <mat-label>City or Community</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="City or Community">
+        <mat-option *ngFor="let cities_kreis_steinfurt of cities_kreis_steinfurts" [value]="cities_kreis_steinfurt.value">
+          {{cities_kreis_steinfurt.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </form>
   <!-- 
   <mat-form-field>
     <input placeholder="ID" matInput [(ngModel)]="events.id"(keyup)="updateId($event)">

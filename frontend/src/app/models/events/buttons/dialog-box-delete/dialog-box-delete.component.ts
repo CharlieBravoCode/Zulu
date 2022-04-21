@@ -9,6 +9,8 @@ export interface EventsData {
   identifier: string;
   title: string;
   location: string;
+  latitud: number;
+  longitud: number;
   id: number;
 }
 
@@ -25,7 +27,10 @@ export class DialogBoxDeleteComponent {
     identifier: '',
     title: '',
     location: '',
+    latitud: 0,
+    longitud: 0,
     id: 0,
+    
   };
 
   constructor(

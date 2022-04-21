@@ -96,7 +96,8 @@ export class MapModuleComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     // this.markerService.makeCapitalMarkers(this.map);
-    this.markerService.makeCapitalCircleMarkers(this.map);
+    //this.markerService.makeCapitalCircleMarkers(this.map);
+    this.markerService.makeCapitalMarkers(this.map);
     this.shapeService.getStateShapes().subscribe(states => {
       this.states = states;
       this.initStatesLayer();

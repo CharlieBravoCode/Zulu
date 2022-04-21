@@ -1,0 +1,34 @@
+[
+    {
+        "id": 32,
+        "identifier": "Crisis-4",
+        "latitud": 52.31546,
+        "location": "Westerkappeln",
+        "longitud": 7.87909,
+        "title": "Flu Outbreak"
+    },
+    {
+        "id": 1,
+        "identifier": "Crisis-1",
+        "latitud": 52.28037,
+        "location": "Rheine",
+        "longitud": 7.44011,
+        "title": "Power failure in the entire city"
+    },
+    {
+        "id": 29,
+        "identifier": "Crisis-3",
+        "latitud": 52.17278,
+        "location": "Emsdetten",
+        "longitud": 7.53444,
+        "title": "Oil Spil on Highway"
+    },
+    {
+        "id": 2,
+        "identifier": "Crisis-2",
+        "latitud": 52.1475,
+        "location": "Steinfurt",
+        "longitud": 7.34417,
+        "title": "Flood in city center"
+    }
+]

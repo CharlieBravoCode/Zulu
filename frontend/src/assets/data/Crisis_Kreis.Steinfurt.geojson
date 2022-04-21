@@ -13,8 +13,7 @@
         "properties": {
           "title": "Power Failure in the entire city",
           "identifier": "Crisis-2",
-          "location": "Rheine",
-          "population": 199518
+          "location": "Rheine"
         }
       },
       {
@@ -29,8 +28,7 @@
         "properties": {
           "title": "Flood in city center",
           "identifier": "Crisis-2",
-          "location": "Burgsteinfurt",
-          "population": 199518
+          "location": "Burgsteinfurt"
         }
       }
     ]
